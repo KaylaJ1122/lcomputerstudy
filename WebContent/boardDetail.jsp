@@ -16,15 +16,19 @@
 	table tr td, table tr th {
 		border:1px solid #818181;
 		width:200px;
-		text-aglin:center;
+		text-align:center;
 	}
-	
 	a {
 		text-decoration:none;
 		color:#000;
 		font-weight:700;
+		border:none;
+		cursor:pointer;
+		padding:10px;
+		display:inline-block;
 	}
 </style>
+
 <body>
 <%@ include file = "db_connection.jsp" %>
 <h1> 타이틀 상세내용</h1>
@@ -53,21 +57,35 @@
 		<td> 게시판 번호 </td>
 		<td><%=b_idx %></td>
 	</tr>
+	
 	<tr>
 		<td> 게시판 타이틀 </td>
 		<td><%=b_title %></td>
 	</tr>
+	
 	<tr>
 		<td> 게시판 내용 </td>
 		<td><%=b_idx %></td>
 	</tr>
+	
 	<tr>
 		<td> 게시판 조회수 </td>
 		<td><%=b_hit %></td>
 	</tr>
+	
 	<tr>
 		<td> 게시판 날짜 </td>
 		<td><%=b_date %></td>
+	</tr>
+	
+	<tr style="height:50px;">
+		<td style="border:none;">
+			<a href="boardEdit.jsp?b_idx=<%=b_idx %>" style="width:70%; font-weight:700;background-color:#818181;color:#fff;">수정</a>
+		</td>
+		
+		<td style="border:none;">
+			<a style="width:70%; font-weight:700; background-color:red;color:#fff;">삭제</a>
+		</td>
 	</tr>
 	<%
 		}

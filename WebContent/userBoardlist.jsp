@@ -12,7 +12,6 @@
 	}
 	table tr th {
 		font-weight:700;
-		
 	}
 	table tr td, table tr th {
 		border:1px solid #818181;
@@ -20,46 +19,40 @@
 		text-align:center;
 	}
 </style>
+
 <body>
-<%@ include file = "db_connection.jsp" %>
+<%@ include file ="db_connection.jsp" %>
 <h1>게시판 목록</h1>
 <table>
 	<tr>
-		<th>No</th>
-		<th>타이틀</th>
+		<th>ID</th>
+		<th>이름</th>
 		<th>내용</th>
-		<th>조회수</th>
-		<th>날짜</th>
 	</tr>
+	
 	<%
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String query = "select * from board2";
+		String query = "select * from board";
 		pstmt = conn.prepareStatement(query);
 		
 		rs = pstmt.executeQuery();
 		
 		while(rs.next()){
-			String b_idx = rs.getString("b_idx");
+			String b_id = rs.getString("b_id");
+			String b_name = rs.getString("b_name");
 			String b_title = rs.getString("b_title");
-			String b_content = rs.getString("b_content");
-			String b_hit = rs.getString("b_hit");
-			String b_date = rs.getString("b_date");
 	%>
 	<tr>
-		<td><%=b_idx%></td>
-		<td><a href="boardDetail.jsp?b_title=<%=b_title%>"><%=b_title %></a></td>
-		<td><%=b_content%></td>
-		<td><%=b_hit%></td>
-		<td><%=b_date%></td>
-		<td style="border:none;">
-			<a href="boardDelete.jsp?b_idx=<%=b_idx%>" style="width:70%; font-weight:700;font-weight:700;background-color:red;color:#fff;">삭제</a>
-		</td>
+		<td><a href="userBoardDetail.jsp?b_id=<%=b_id%>"><%=b_id %></a></td>
+		<td><%=b_name %></td>
+		<td><%=b_title %></td>
 	</tr>
 	
-		
-	
+	<td style="border:none;">
+		<a href="userBoardDelete.jsp?b_id=<%=b_id %>" style="width:70%l font-weight:700; background-color:red; color:#fff;">삭제</a>
+	</td>
 	<%
 		}
 		rs.close();
@@ -67,7 +60,7 @@
 		conn.close();
 	%>
 		
+	
 </table>
-
 </body>
 </html>
